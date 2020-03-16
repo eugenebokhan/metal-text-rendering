@@ -5,7 +5,7 @@ install! 'cocoapods', :disable_input_output_paths => true
 use_frameworks!
 
 target 'TextRendering' do
-  pod 'MetalView'
+  pod 'MetalView', :path => '~/github/eugenebokhan/MetalView'
   pod 'Alloy/Shaders'
   pod 'SnapKit'
   pod 'SwiftMath'

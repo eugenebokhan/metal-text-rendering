@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 import Alloy
+import MetalPerformanceShaders
 
 final class FontAtlas {
 
@@ -14,7 +15,9 @@ final class FontAtlas {
     var fontImage: CGImage!
     var fontTexture: MTLTexture!
     var fontBuffer: MTLBuffer!
-    var metalContext: MTLContext
+    let metalContext: MTLContext
+    let quantizeDistanceField: QuantizeDistanceField
+    let scale: MPSImageBilinearScale
 
     // MARK: - Init
 
@@ -27,7 +30,8 @@ final class FontAtlas {
          textureSize: Int,
          metalContext: MTLContext) {
         self.metalContext = metalContext
-
+        self.quantizeDistanceField = try! .init(context: metalContext)
+        self.scale = .init(device: metalContext.device)
         self.parentFont = font
         self.fontPointSize = font.pointSize
         self.spread = self.estimatedLineWidth(for: font) * 0.5
@@ -197,7 +201,7 @@ final class FontAtlas {
         }
 
         self.fontImage = context.makeImage()!
-        self.fontTexture = try! self.metalContext.texture(from: self.fontImage)
+//        self.fontTexture = try! self.metalContext.texture(from: self.fontImage)
 
         return data
     }
@@ -207,39 +211,42 @@ final class FontAtlas {
                                              width: Self.fontAtlasSize,
                                              height: Self.fontAtlasSize)
 
-        let scaleFactor = 2
-
-        let textureWidth = Int(Self.fontAtlasSize) / scaleFactor
-        let textureHeight = Int(Self.fontAtlasSize) / scaleFactor
-
         let pixelRowAlignment = self.metalContext.device.minimumTextureBufferAlignment(for: .r32Float)
-        let bytesPerRow = alignUp(size: textureWidth, align: pixelRowAlignment)
+        let bytesPerRow = alignUp(size: Self.fontAtlasSize, align: pixelRowAlignment)
 
-        let sdf = self.createSignedDistanceFieldForGrayscaleImage(imageData: fontData,
+        var sdf = self.createSignedDistanceFieldForGrayscaleImage(imageData: fontData,
                                                                   width: Self.fontAtlasSize,
                                                                   height: Self.fontAtlasSize)
-        var resampledSDF = self.createResampledData(in: sdf,
-                                                    width: textureWidth,
-                                                    height: textureHeight,
-                                                    scaleFactor: scaleFactor)
 
-        let texture = try! self.metalContext.texture(width: textureWidth,
-                                                     height: textureHeight,
-                                                     pixelFormat: .r32Float,
-                                                     usage: [.shaderRead, .shaderWrite])
+        let sdfTexture = try! self.metalContext.texture(width: Self.fontAtlasSize,
+                                                        height: Self.fontAtlasSize,
+                                                        pixelFormat: .r32Float,
+                                                        usage: [.shaderRead, .shaderWrite])
+        self.fontTexture = try! self.metalContext.texture(width: Self.tetxureAtlasSize,
+                                                          height: Self.tetxureAtlasSize,
+                                                          pixelFormat: .r8Unorm,
+                                                          usage: [.shaderRead, .shaderWrite])
 
+        sdfTexture.replace(region: sdfTexture.region,
+                           mipmapLevel: 0,
+                           withBytes: &sdf,
+                           bytesPerRow: bytesPerRow * 4)
 
+        let spread: Float = Float(self.estimatedLineWidth(for: self.parentFont) * 0.5)
 
-        texture.replace(region: texture.region,
-                        mipmapLevel: 0,
-                        withBytes: &resampledSDF,
-                        bytesPerRow: bytesPerRow * 4)
+        try! self.metalContext.scheduleAndWait { commandBuffer in
+            self.quantizeDistanceField.encode(sdfTexture: sdfTexture,
+                                              normalizationFactor: spread,
+                                              in: commandBuffer)
+            self.scale.encode(commandBuffer: commandBuffer,
+                              sourceTexture: sdfTexture,
+                              destinationTexture: self.fontTexture)
 
-        self.fontTexture = texture
+        }
 
         print("HI!")
     }
 
-    static let fontAtlasSize: size_t = 8
-
+    static let fontAtlasSize: Int = 4096
+    static let tetxureAtlasSize: Int = 4096 / 2
 }

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0098AC7963D9649A470E0FE1 /* Pods_TextRendering.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE4910DF5AE5A89DC3A2F250 /* Pods_TextRendering.framework */; };
+		1847D914241F9BD10006FD84 /* QuantizeDistanceField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1847D913241F9BD10006FD84 /* QuantizeDistanceField.swift */; };
+		1847D916241FA4750006FD84 /* SDF.metal in Sources */ = {isa = PBXBuildFile; fileRef = 1847D915241FA4750006FD84 /* SDF.metal */; };
 		184D7A86241D4902006DCC93 /* TextRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184D7A85241D4902006DCC93 /* TextRender.swift */; };
 		184D7A88241D493A006DCC93 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 184D7A87241D493A006DCC93 /* Shaders.metal */; };
 		18B4CBE8241E6BD7006BA421 /* SDFInitializationPhass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4CBE7241E6BD7006BA421 /* SDFInitializationPhass.swift */; };
@@ -31,6 +33,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1847D913241F9BD10006FD84 /* QuantizeDistanceField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantizeDistanceField.swift; sourceTree = "<group>"; };
+		1847D915241FA4750006FD84 /* SDF.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = SDF.metal; sourceTree = "<group>"; };
 		184D7A85241D4902006DCC93 /* TextRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRender.swift; sourceTree = "<group>"; };
 		184D7A87241D493A006DCC93 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		184D7A89241D4F37006DCC93 /* ShaderStructures.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShaderStructures.h; sourceTree = "<group>"; };
@@ -93,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				184D7A87241D493A006DCC93 /* Shaders.metal */,
+				1847D915241FA4750006FD84 /* SDF.metal */,
 				184D7A89241D4F37006DCC93 /* ShaderStructures.h */,
 			);
 			path = Shaders;
@@ -139,6 +144,7 @@
 				18F703DB241CCF8500062259 /* TextMesh.swift */,
 				184D7A85241D4902006DCC93 /* TextRender.swift */,
 				18F703DD241CCF9A00062259 /* FontAtlas.swift */,
+				1847D913241F9BD10006FD84 /* QuantizeDistanceField.swift */,
 				18C9D100241E4C9D004895D3 /* FontAtlas+SDF.swift */,
 				18F703DF241CCFB300062259 /* GlyphDescriptor.swift */,
 				18F703D7241CC9B200062259 /* MetalView.swift */,
@@ -279,8 +285,10 @@
 				184D7A88241D493A006DCC93 /* Shaders.metal in Sources */,
 				18B4CBE8241E6BD7006BA421 /* SDFInitializationPhass.swift in Sources */,
 				18C9D101241E4C9D004895D3 /* FontAtlas+SDF.swift in Sources */,
+				1847D916241FA4750006FD84 /* SDF.metal in Sources */,
 				18F703E0241CCFB300062259 /* GlyphDescriptor.swift in Sources */,
 				18F703C4241CC94200062259 /* AppDelegate.swift in Sources */,
+				1847D914241F9BD10006FD84 /* QuantizeDistanceField.swift in Sources */,
 				18F703C6241CC94200062259 /* SceneDelegate.swift in Sources */,
 				18F703DA241CCF2700062259 /* Mesh.swift in Sources */,
 				18F703DE241CCF9A00062259 /* FontAtlas.swift in Sources */,

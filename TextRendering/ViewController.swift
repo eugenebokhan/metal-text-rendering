@@ -35,9 +35,9 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        MTLCaptureManager.shared().startCapture(commandQueue: self.context.commandQueue)
+//        MTLCaptureManager.shared().startCapture(commandQueue: self.context.commandQueue)
         self.draw(texture: self.destinationTexture)
-        MTLCaptureManager.shared().stopCapture()
+//        MTLCaptureManager.shared().stopCapture()
 
         print("Hello")
     }
@@ -47,14 +47,14 @@ class ViewController: UIViewController {
     private func setup() throws {
         self.context = try .init()
         self.metalView = try .init(context: self.context)
+        self.metalView.contentScaleFactor = UIScreen.main.scale
 
         self.destinationTexture = try self.context.texture(width: self.destinationTextureSize.x,
                                                            height: self.destinationTextureSize.y,
                                                            pixelFormat: .bgra8Unorm)
 
         let defaultFont = "HoeflerText-Regular"
-        let atlas = FontAtlas(with: UIFont(name: defaultFont,
-                                           size: 32)!,
+        let atlas = FontAtlas(with: UIFont(name: defaultFont, size: 72)!,
                               textureSize: FontAtlas.fontAtlasSize,
                               metalContext: self.context)
         self.atlasTexture = atlas.fontTexture
@@ -68,10 +68,10 @@ class ViewController: UIViewController {
                                           """,
                                   rect: .init(x: 0,
                                               y: 0,
-                                              width: self.destinationTextureSize.x,
-                                              height: self.destinationTextureSize.y),
+                                              width: 414,
+                                              height: 816),
                                   fontAtlas: atlas,
-                                  fontSize: 20,
+                                  fontSize: 40,
                                   device: self.context.device)
 
         self.setupUI()
@@ -95,8 +95,8 @@ class ViewController: UIViewController {
     private func draw(texture: MTLTexture) {
         do {
             try self.context.schedule { commandBuffer in
-                let drawableSize = SIMD2<Int>(.init(self.metalView.drawableSize.width),
-                                              .init(self.metalView.drawableSize.height))
+                let drawableSize = SIMD2<Int>(.init(414),
+                                              .init(816))
 
                 self.metalView.draw(texture: texture,
                                     additionalRenderCommands: { renderEncoder in

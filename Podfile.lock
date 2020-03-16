@@ -14,7 +14,7 @@ PODS:
 
 DEPENDENCIES:
   - Alloy/Shaders
-  - MetalView
+  - MetalView (from `~/github/eugenebokhan/MetalView`)
   - SettingsViewController (from `https://github.com/eugenebokhan/SettingsViewController.git`, branch `master`)
   - SnapKit
   - SwiftMath
@@ -22,11 +22,12 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alloy
-    - MetalView
     - SnapKit
     - SwiftMath
 
 EXTERNAL SOURCES:
+  MetalView:
+    :path: "~/github/eugenebokhan/MetalView"
   SettingsViewController:
     :branch: master
     :git: https://github.com/eugenebokhan/SettingsViewController.git
@@ -43,6 +44,6 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftMath: 5ae74160b077a63752d6cce4fbe85657dad6b534
 
-PODFILE CHECKSUM: 269d0d93e5444583b454a32d58f6523eeca24a5b
+PODFILE CHECKSUM: ce3f087f19e3eae1d8aaef5682d64b97c685e22a
 
 COCOAPODS: 1.9.1

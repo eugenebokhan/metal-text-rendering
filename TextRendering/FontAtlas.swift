@@ -27,6 +27,7 @@ final class FontAtlas {
          textureSize: Int,
          metalContext: MTLContext) {
         self.metalContext = metalContext
+
         self.parentFont = font
         self.fontPointSize = font.pointSize
         self.spread = self.estimatedLineWidth(for: font) * 0.5
@@ -86,40 +87,31 @@ final class FontAtlas {
 
     func createFontAtlas(for font: UIFont,
                          width: size_t,
-                         height: size_t) {
-        let pixelRowAlignment = self.metalContext.device.minimumTextureBufferAlignment(for: .r8Unorm)
-        let bytesPerRow = alignUp(size: width, align: pixelRowAlignment)
+                         height: size_t) -> [UInt8] {
+        var data = [UInt8](repeating: .zero, count: width * height)
 
-        let pagesize = Int(getpagesize())
-        let allocationSize = alignUp(size: bytesPerRow * height, align: pagesize)
-        var data: UnsafeMutableRawPointer? = nil
-        let result = posix_memalign(&data, pagesize, allocationSize)
-        if result != noErr {
-            fatalError("Error during memory allocation")
-        }
-
-        let context = CGContext(data: data,
+        let context = CGContext(data: &data,
                                 width: width,
                                 height: height,
                                 bitsPerComponent: 8,
                                 bytesPerRow: width,
                                 space: CGColorSpaceCreateDeviceGray(),
-                                bitmapInfo: CGImageAlphaInfo.none.rawValue)!
-
-        let rect = CGRect(x: 0,
-                          y: 0,
-                          width: width,
-                          height: height)
+                                bitmapInfo: CGBitmapInfo.alphaInfoMask.rawValue & CGImageAlphaInfo.none.rawValue)!
 
         // Turn off antialiasing so we only get fully-on or fully-off pixels.
         // This implicitly disables subpixel antialiasing and hinting.
-        context.setAllowsAntialiasing(true)
+        context.setAllowsAntialiasing(false)
 
         // Flip context coordinate space so y increases downward
         context.translateBy(x: .zero,
                              y: .init(height))
         context.scaleBy(x: 1,
                         y: -1)
+
+        let rect = CGRect(x: 0,
+                          y: 0,
+                          width: width,
+                          height: height)
 
         // Fill the context with an opaque black color
         context.setFillColor(UIColor.black.cgColor)
@@ -205,33 +197,49 @@ final class FontAtlas {
         }
 
         self.fontImage = context.makeImage()!
+        self.fontTexture = try! self.metalContext.texture(from: self.fontImage)
 
-        self.fontBuffer = self.metalContext
-                              .device
-                              .makeBuffer(bytesNoCopy: context.data!,
-                                          length: allocationSize,
-                                          options: .storageModeShared,
-                                          deallocator: { pointer, length in free(data) })!
-
-        let textureDescriptor = MTLTextureDescriptor()
-        textureDescriptor.pixelFormat = .r8Unorm
-        textureDescriptor.width = context.width
-        textureDescriptor.height = context.height
-        textureDescriptor.storageMode = self.fontBuffer.storageMode
-        // we are only going to read from this texture on GPU side
-        textureDescriptor.usage = [.shaderRead, .shaderWrite]
-
-        self.fontTexture = self.fontBuffer.makeTexture(descriptor: textureDescriptor,
-                                                       offset: 0,
-                                                       bytesPerRow: context.bytesPerRow)
+        return data
     }
 
     func createTextureData() {
-        self.createFontAtlas(for: self.parentFont,
-                             width: Self.fontAtlasSize,
-                             height: Self.fontAtlasSize)
+        let fontData =  self.createFontAtlas(for: self.parentFont,
+                                             width: Self.fontAtlasSize,
+                                             height: Self.fontAtlasSize)
+
+        let scaleFactor = 2
+
+        let textureWidth = Int(Self.fontAtlasSize) / scaleFactor
+        let textureHeight = Int(Self.fontAtlasSize) / scaleFactor
+
+        let pixelRowAlignment = self.metalContext.device.minimumTextureBufferAlignment(for: .r32Float)
+        let bytesPerRow = alignUp(size: textureWidth, align: pixelRowAlignment)
+
+        let sdf = self.createSignedDistanceFieldForGrayscaleImage(imageData: fontData,
+                                                                  width: Self.fontAtlasSize,
+                                                                  height: Self.fontAtlasSize)
+        var resampledSDF = self.createResampledData(in: sdf,
+                                                    width: textureWidth,
+                                                    height: textureHeight,
+                                                    scaleFactor: scaleFactor)
+
+        let texture = try! self.metalContext.texture(width: textureWidth,
+                                                     height: textureHeight,
+                                                     pixelFormat: .r32Float,
+                                                     usage: [.shaderRead, .shaderWrite])
+
+
+
+        texture.replace(region: texture.region,
+                        mipmapLevel: 0,
+                        withBytes: &resampledSDF,
+                        bytesPerRow: bytesPerRow * 4)
+
+        self.fontTexture = texture
+
+        print("HI!")
     }
 
-    static let fontAtlasSize: size_t = 4096
+    static let fontAtlasSize: size_t = 8
 
 }

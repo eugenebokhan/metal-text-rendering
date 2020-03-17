@@ -13,9 +13,8 @@ class ViewController: UIViewController {
     private var metalView: MetalView!
     // Core
     private var context: MTLContext!
-    private var atlasTexture: MTLTexture!
+    private var atlasProvider: MTLFontAtlasProvider!
     private var textRender: TextRender!
-    private var textMesh: TextMesh!
     private var destinationTexture: MTLTexture!
     private let screenBounds = UIScreen.main.nativeBounds
     private var destinationTextureSize: SIMD2<Int> {
@@ -35,11 +34,16 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-//        MTLCaptureManager.shared().startCapture(commandQueue: self.context.commandQueue)
+        let drawableSize = MTLSize(width: self.destinationTextureSize.x,
+                                   height: self.destinationTextureSize.y,
+                                   depth: 0)
+        self.textRender.renderTargetSize = drawableSize
+        self.textRender.textMeshDescriptor = .init(text: "Damn, I'm good Damn, I'm good Damn, I'm good Damn, I'm good Damn, I'm good Damn, I'm good Damn, I'm good Damn, I'm good Damn, I'm good Damn, I'm good Damn, I'm good ",
+                                                   rect: .init(origin: .init(x: 0.25, y: 0.25),
+                                                               size: .init(width: 0.5,
+                                                                           height: 0.5)),
+                                                   fontSize: 70)
         self.draw(texture: self.destinationTexture)
-//        MTLCaptureManager.shared().stopCapture()
-
-        print("Hello")
     }
 
     // MARK: - Setup
@@ -49,30 +53,26 @@ class ViewController: UIViewController {
         self.metalView = try .init(context: self.context)
         self.metalView.contentScaleFactor = UIScreen.main.scale
 
-        self.destinationTexture = try self.context.texture(width: self.destinationTextureSize.x,
-                                                           height: self.destinationTextureSize.y,
-                                                           pixelFormat: .bgra8Unorm)
+        self.destinationTexture = try self.context
+                                          .texture(width: self.destinationTextureSize.x,
+                                                   height: self.destinationTextureSize.y,
+                                                   pixelFormat: .bgra8Unorm)
 
-        let defaultFont = "HoeflerText-Regular"
-        let atlas = FontAtlas(with: UIFont(name: defaultFont, size: 72)!,
-                              textureSize: FontAtlas.fontAtlasSize,
-                              metalContext: self.context)
-        self.atlasTexture = atlas.fontTexture
+        self.atlasProvider = try MTLFontAtlasProvider(context: self.context)
+        let fontAtlas = try self.atlasProvider
+                                .fontAtlas(descriptor: .init(fontName: "HelveticaNeue",
+                                                             textureSize: 2048))
+        self.textRender = try .init(context: self.context,
+                                    fontAtlas: fontAtlas)
 
-        self.textRender = try .init(context: self.context)
-        self.textMesh = try .init(string: """
-                                          It was the best of times, it was the worst of times,
-                                          it was the age of wisdom, it was the age of foolishness...\n\n
-                                          Все счастливые семьи похожи друг на друга,
-                                          каждая несчастливая семья несчастлива по-своему.
-                                          """,
-                                  rect: .init(x: 0,
-                                              y: 0,
-                                              width: 414,
-                                              height: 816),
-                                  fontAtlas: atlas,
-                                  fontSize: 40,
-                                  device: self.context.device)
+        let fontAtlasCodable = try fontAtlas.codable()
+        let jsonEncoder = JSONEncoder()
+        let fontAtlasData = try jsonEncoder.encode(fontAtlasCodable)
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+
+        let fileURL = documentsDirectory.appendingPathComponent("HelveticaNeue.mtlfontatlas")
+        try fontAtlasData.write(to: fileURL)
 
         self.setupUI()
     }
@@ -95,16 +95,8 @@ class ViewController: UIViewController {
     private func draw(texture: MTLTexture) {
         do {
             try self.context.schedule { commandBuffer in
-                let drawableSize = SIMD2<Int>(.init(414),
-                                              .init(816))
-
                 self.metalView.draw(texture: texture,
-                                    additionalRenderCommands: { renderEncoder in
-                                        self.textRender!.render(textMesh: self.textMesh,
-                                                                fontTexture: self.atlasTexture,
-                                                                drawableSize: drawableSize,
-                                                                using: renderEncoder)
-                },
+                                    additionalRenderCommands: (self.textRender.render(using:)),
                                     in: commandBuffer)
             }
         } catch { return }

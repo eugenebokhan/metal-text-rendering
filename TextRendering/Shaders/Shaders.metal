@@ -10,20 +10,19 @@ struct TransformedVertex {
     float2 texCoords;
 };
 
-vertex TransformedVertex vertex_shade(constant Vertex *vertices [[buffer(0)]],
-                                      constant Uniforms &uniforms [[buffer(1)]],
-                                      uint vid [[vertex_id]]) {
+vertex TransformedVertex vertex_shade(constant TextMeshVertex* vertices [[ buffer(0) ]],
+                                      constant matrix_float4x4& viewProjectionMatrix [[ buffer(1) ]],
+                                      uint vertexID [[ vertex_id ]]) {
     TransformedVertex outVert;
-    outVert.position = uniforms.viewProjectionMatrix * uniforms.modelMatrix * float4(vertices[vid].position);
-    outVert.texCoords = vertices[vid].texCoords;
+    outVert.position = viewProjectionMatrix * float4(vertices[vertexID].position);
+    outVert.texCoords = vertices[vertexID].texCoords;
     return outVert;
 }
 
 fragment half4 fragment_shade(TransformedVertex vert [[stage_in]],
-                              constant Uniforms &uniforms [[buffer(0)]],
+                              constant float4& color [[buffer(0)]],
                               sampler samplr [[sampler(0)]],
                               texture2d<float, access::sample> texture [[texture(0)]]) {
-    float4 color = uniforms.foregroundColor;
     // Outline of glyph is the isocontour with value 50%
     float edgeDistance = 0.5;
     // Sample the signed-distance field to find distance from this fragment to the glyph outline
@@ -47,9 +46,7 @@ kernel void quantizeDistanceField(texture2d<float, access::read_write> sdfTextur
     }
 
     const float distance = sdfTexture.read(position).r;
-    const float clampDist = fmax(-normalizationFactor,
-                                 fmin(distance,
-                                      normalizationFactor));
+    const float clampDist = fmax(-normalizationFactor, fmin(distance, normalizationFactor));
     const float scaledDist = clampDist / normalizationFactor;
     const float resultValue = ((scaledDist + 1) / 2);
     sdfTexture.write(resultValue, position);

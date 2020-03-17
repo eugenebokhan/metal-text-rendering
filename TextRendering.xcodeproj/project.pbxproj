@@ -8,17 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		0098AC7963D9649A470E0FE1 /* Pods_TextRendering.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE4910DF5AE5A89DC3A2F250 /* Pods_TextRendering.framework */; };
+		1842C4C5242003BB004F9923 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1842C4C4242003BB004F9923 /* UIFont+Extensions.swift */; };
 		1847D914241F9BD10006FD84 /* QuantizeDistanceField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1847D913241F9BD10006FD84 /* QuantizeDistanceField.swift */; };
-		1847D916241FA4750006FD84 /* SDF.metal in Sources */ = {isa = PBXBuildFile; fileRef = 1847D915241FA4750006FD84 /* SDF.metal */; };
 		184D7A86241D4902006DCC93 /* TextRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184D7A85241D4902006DCC93 /* TextRender.swift */; };
 		184D7A88241D493A006DCC93 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 184D7A87241D493A006DCC93 /* Shaders.metal */; };
-		18B4CBE8241E6BD7006BA421 /* SDFInitializationPhass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4CBE7241E6BD7006BA421 /* SDFInitializationPhass.swift */; };
-		18B4CBEA241E6C97006BA421 /* SDFInteriorExteriorPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4CBE9241E6C97006BA421 /* SDFInteriorExteriorPass.swift */; };
-		18B4CBEC241E6D02006BA421 /* SDFForwardDeadReckoningPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4CBEB241E6D02006BA421 /* SDFForwardDeadReckoningPass.swift */; };
-		18B4CBEE241E6DBE006BA421 /* SDFBackwardDeadReckoningPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4CBED241E6DBE006BA421 /* SDFBackwardDeadReckoningPass.swift */; };
-		18B4CBF0241E6DE8006BA421 /* SDFInteriorDistanceNegationPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4CBEF241E6DE8006BA421 /* SDFInteriorDistanceNegationPass.swift */; };
-		18B4CBF3241E7847006BA421 /* SDF+GPU.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4CBF2241E7847006BA421 /* SDF+GPU.swift */; };
-		18C9D101241E4C9D004895D3 /* FontAtlas+SDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C9D100241E4C9D004895D3 /* FontAtlas+SDF.swift */; };
+		189DE5122420109E0004676D /* MTLFontAtlas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189DE5112420109E0004676D /* MTLFontAtlas.swift */; };
+		189DE5142420898C0004676D /* MTLSize+Equtable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189DE5132420898C0004676D /* MTLSize+Equtable.swift */; };
+		189DE516242099A40004676D /* MTLFontAtlasDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189DE515242099A40004676D /* MTLFontAtlasDescriptor.swift */; };
+		189DE5182420BEE70004676D /* HelveticaNeue.mtlfontatlas in Resources */ = {isa = PBXBuildFile; fileRef = 189DE5172420BEE70004676D /* HelveticaNeue.mtlfontatlas */; };
 		18F703C4241CC94200062259 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F703C3241CC94200062259 /* AppDelegate.swift */; };
 		18F703C6241CC94200062259 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F703C5241CC94200062259 /* SceneDelegate.swift */; };
 		18F703C8241CC94200062259 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F703C7241CC94200062259 /* ViewController.swift */; };
@@ -27,25 +24,22 @@
 		18F703D0241CC94300062259 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18F703CE241CC94300062259 /* LaunchScreen.storyboard */; };
 		18F703D8241CC9B200062259 /* MetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F703D7241CC9B200062259 /* MetalView.swift */; };
 		18F703DA241CCF2700062259 /* Mesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F703D9241CCF2700062259 /* Mesh.swift */; };
-		18F703DC241CCF8500062259 /* TextMesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F703DB241CCF8500062259 /* TextMesh.swift */; };
-		18F703DE241CCF9A00062259 /* FontAtlas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F703DD241CCF9A00062259 /* FontAtlas.swift */; };
+		18F703DC241CCF8500062259 /* MTLTextMesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F703DB241CCF8500062259 /* MTLTextMesh.swift */; };
+		18F703DE241CCF9A00062259 /* MTLFontAtlasProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F703DD241CCF9A00062259 /* MTLFontAtlasProvider.swift */; };
 		18F703E0241CCFB300062259 /* GlyphDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F703DF241CCFB300062259 /* GlyphDescriptor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1842C4C4242003BB004F9923 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		1847D913241F9BD10006FD84 /* QuantizeDistanceField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantizeDistanceField.swift; sourceTree = "<group>"; };
-		1847D915241FA4750006FD84 /* SDF.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = SDF.metal; sourceTree = "<group>"; };
 		184D7A85241D4902006DCC93 /* TextRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRender.swift; sourceTree = "<group>"; };
 		184D7A87241D493A006DCC93 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		184D7A89241D4F37006DCC93 /* ShaderStructures.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShaderStructures.h; sourceTree = "<group>"; };
 		184D7A8A241D4F77006DCC93 /* TextRendering-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TextRendering-Bridging-Header.h"; sourceTree = "<group>"; };
-		18B4CBE7241E6BD7006BA421 /* SDFInitializationPhass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDFInitializationPhass.swift; sourceTree = "<group>"; };
-		18B4CBE9241E6C97006BA421 /* SDFInteriorExteriorPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDFInteriorExteriorPass.swift; sourceTree = "<group>"; };
-		18B4CBEB241E6D02006BA421 /* SDFForwardDeadReckoningPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDFForwardDeadReckoningPass.swift; sourceTree = "<group>"; };
-		18B4CBED241E6DBE006BA421 /* SDFBackwardDeadReckoningPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDFBackwardDeadReckoningPass.swift; sourceTree = "<group>"; };
-		18B4CBEF241E6DE8006BA421 /* SDFInteriorDistanceNegationPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDFInteriorDistanceNegationPass.swift; sourceTree = "<group>"; };
-		18B4CBF2241E7847006BA421 /* SDF+GPU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SDF+GPU.swift"; sourceTree = "<group>"; };
-		18C9D100241E4C9D004895D3 /* FontAtlas+SDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FontAtlas+SDF.swift"; sourceTree = "<group>"; };
+		189DE5112420109E0004676D /* MTLFontAtlas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTLFontAtlas.swift; sourceTree = "<group>"; };
+		189DE5132420898C0004676D /* MTLSize+Equtable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MTLSize+Equtable.swift"; sourceTree = "<group>"; };
+		189DE515242099A40004676D /* MTLFontAtlasDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTLFontAtlasDescriptor.swift; sourceTree = "<group>"; };
+		189DE5172420BEE70004676D /* HelveticaNeue.mtlfontatlas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HelveticaNeue.mtlfontatlas; sourceTree = "<group>"; };
 		18F703C0241CC94200062259 /* TextRendering.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextRendering.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18F703C3241CC94200062259 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18F703C5241CC94200062259 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,8 +50,8 @@
 		18F703D1241CC94300062259 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18F703D7241CC9B200062259 /* MetalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalView.swift; sourceTree = "<group>"; };
 		18F703D9241CCF2700062259 /* Mesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mesh.swift; sourceTree = "<group>"; };
-		18F703DB241CCF8500062259 /* TextMesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMesh.swift; sourceTree = "<group>"; };
-		18F703DD241CCF9A00062259 /* FontAtlas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontAtlas.swift; sourceTree = "<group>"; };
+		18F703DB241CCF8500062259 /* MTLTextMesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTLTextMesh.swift; sourceTree = "<group>"; };
+		18F703DD241CCF9A00062259 /* MTLFontAtlasProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MTLFontAtlasProvider.swift; sourceTree = "<group>"; };
 		18F703DF241CCFB300062259 /* GlyphDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlyphDescriptor.swift; sourceTree = "<group>"; };
 		4F7A490D872C640E7F586548 /* Pods-TextRendering.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextRendering.release.xcconfig"; path = "Target Support Files/Pods-TextRendering/Pods-TextRendering.release.xcconfig"; sourceTree = "<group>"; };
 		618E380E195F04399C6C6805 /* Pods-TextRendering.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextRendering.debug.xcconfig"; path = "Target Support Files/Pods-TextRendering/Pods-TextRendering.debug.xcconfig"; sourceTree = "<group>"; };
@@ -97,23 +91,9 @@
 			isa = PBXGroup;
 			children = (
 				184D7A87241D493A006DCC93 /* Shaders.metal */,
-				1847D915241FA4750006FD84 /* SDF.metal */,
 				184D7A89241D4F37006DCC93 /* ShaderStructures.h */,
 			);
 			path = Shaders;
-			sourceTree = "<group>";
-		};
-		18B4CBF1241E7829006BA421 /* SDF */ = {
-			isa = PBXGroup;
-			children = (
-				18B4CBF2241E7847006BA421 /* SDF+GPU.swift */,
-				18B4CBE7241E6BD7006BA421 /* SDFInitializationPhass.swift */,
-				18B4CBE9241E6C97006BA421 /* SDFInteriorExteriorPass.swift */,
-				18B4CBEB241E6D02006BA421 /* SDFForwardDeadReckoningPass.swift */,
-				18B4CBED241E6DBE006BA421 /* SDFBackwardDeadReckoningPass.swift */,
-				18B4CBEF241E6DE8006BA421 /* SDFInteriorDistanceNegationPass.swift */,
-			);
-			path = SDF;
 			sourceTree = "<group>";
 		};
 		18F703B7241CC94200062259 = {
@@ -140,16 +120,19 @@
 				18F703C3241CC94200062259 /* AppDelegate.swift */,
 				18F703C5241CC94200062259 /* SceneDelegate.swift */,
 				18F703C7241CC94200062259 /* ViewController.swift */,
+				1842C4C4242003BB004F9923 /* UIFont+Extensions.swift */,
 				18F703D9241CCF2700062259 /* Mesh.swift */,
-				18F703DB241CCF8500062259 /* TextMesh.swift */,
+				18F703DB241CCF8500062259 /* MTLTextMesh.swift */,
 				184D7A85241D4902006DCC93 /* TextRender.swift */,
-				18F703DD241CCF9A00062259 /* FontAtlas.swift */,
+				189DE5132420898C0004676D /* MTLSize+Equtable.swift */,
+				18F703DD241CCF9A00062259 /* MTLFontAtlasProvider.swift */,
+				189DE5172420BEE70004676D /* HelveticaNeue.mtlfontatlas */,
+				189DE5112420109E0004676D /* MTLFontAtlas.swift */,
+				189DE515242099A40004676D /* MTLFontAtlasDescriptor.swift */,
 				1847D913241F9BD10006FD84 /* QuantizeDistanceField.swift */,
-				18C9D100241E4C9D004895D3 /* FontAtlas+SDF.swift */,
 				18F703DF241CCFB300062259 /* GlyphDescriptor.swift */,
 				18F703D7241CC9B200062259 /* MetalView.swift */,
 				1847D911241F59760006FD84 /* Shaders */,
-				18B4CBF1241E7829006BA421 /* SDF */,
 				18F703C9241CC94200062259 /* Main.storyboard */,
 				18F703CC241CC94300062259 /* Assets.xcassets */,
 				18F703CE241CC94300062259 /* LaunchScreen.storyboard */,
@@ -223,6 +206,7 @@
 				18F703D0241CC94300062259 /* LaunchScreen.storyboard in Resources */,
 				18F703CD241CC94300062259 /* Assets.xcassets in Resources */,
 				18F703CB241CC94200062259 /* Main.storyboard in Resources */,
+				189DE5182420BEE70004676D /* HelveticaNeue.mtlfontatlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,25 +257,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18B4CBF0241E6DE8006BA421 /* SDFInteriorDistanceNegationPass.swift in Sources */,
+				189DE516242099A40004676D /* MTLFontAtlasDescriptor.swift in Sources */,
 				18F703D8241CC9B200062259 /* MetalView.swift in Sources */,
-				18B4CBEC241E6D02006BA421 /* SDFForwardDeadReckoningPass.swift in Sources */,
-				18B4CBF3241E7847006BA421 /* SDF+GPU.swift in Sources */,
-				18B4CBEA241E6C97006BA421 /* SDFInteriorExteriorPass.swift in Sources */,
-				18F703DC241CCF8500062259 /* TextMesh.swift in Sources */,
+				18F703DC241CCF8500062259 /* MTLTextMesh.swift in Sources */,
+				189DE5122420109E0004676D /* MTLFontAtlas.swift in Sources */,
 				18F703C8241CC94200062259 /* ViewController.swift in Sources */,
-				18B4CBEE241E6DBE006BA421 /* SDFBackwardDeadReckoningPass.swift in Sources */,
 				184D7A86241D4902006DCC93 /* TextRender.swift in Sources */,
 				184D7A88241D493A006DCC93 /* Shaders.metal in Sources */,
-				18B4CBE8241E6BD7006BA421 /* SDFInitializationPhass.swift in Sources */,
-				18C9D101241E4C9D004895D3 /* FontAtlas+SDF.swift in Sources */,
-				1847D916241FA4750006FD84 /* SDF.metal in Sources */,
 				18F703E0241CCFB300062259 /* GlyphDescriptor.swift in Sources */,
 				18F703C4241CC94200062259 /* AppDelegate.swift in Sources */,
 				1847D914241F9BD10006FD84 /* QuantizeDistanceField.swift in Sources */,
 				18F703C6241CC94200062259 /* SceneDelegate.swift in Sources */,
 				18F703DA241CCF2700062259 /* Mesh.swift in Sources */,
-				18F703DE241CCF9A00062259 /* FontAtlas.swift in Sources */,
+				189DE5142420898C0004676D /* MTLSize+Equtable.swift in Sources */,
+				1842C4C5242003BB004F9923 /* UIFont+Extensions.swift in Sources */,
+				18F703DE241CCF9A00062259 /* MTLFontAtlasProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

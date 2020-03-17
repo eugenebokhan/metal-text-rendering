@@ -26,30 +26,30 @@ final public class QuantizeDistanceField {
 
     // MARK: - Encode
 
-    public func encode(sdfTexture: MTLTexture,
+    public func encode(inPlaceSDFTexture: MTLTexture,
                        normalizationFactor: Float,
                        in commandBuffer: MTLCommandBuffer) {
         commandBuffer.compute { encoder in
             encoder.label = "Quantize Distance Field"
-            self.encode(sdfTexture: sdfTexture,
+            self.encode(inPlaceSDFTexture: inPlaceSDFTexture,
                         normalizationFactor: normalizationFactor,
                         using: encoder)
         }
     }
 
-    public func encode(sdfTexture: MTLTexture,
+    public func encode(inPlaceSDFTexture: MTLTexture,
                        normalizationFactor: Float,
                        using encoder: MTLComputeCommandEncoder) {
-        encoder.setTexture(sdfTexture,
+        encoder.setTexture(inPlaceSDFTexture,
                            index: 0)
         encoder.set(normalizationFactor,
                     at: 0)
         if self.deviceSupportsNonuniformThreadgroups {
             encoder.dispatch2d(state: self.pipelineState,
-                               exactly: sdfTexture.size)
+                               exactly: inPlaceSDFTexture.size)
         } else {
             encoder.dispatch2d(state: self.pipelineState,
-                               covering: sdfTexture.size)
+                               covering: inPlaceSDFTexture.size)
         }
     }
 

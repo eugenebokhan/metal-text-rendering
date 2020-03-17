@@ -2,30 +2,19 @@ import Foundation
 import CoreGraphics
 import CoreText
 
-final class GlyphDescriptor {
+final public class GlyphDescriptor {
 
-    // MARK: Type Definitions
+    var glyphIndex: CGGlyph
+    var topLeftCoordinate: SIMD2<Float>
+    var bottomRightCoordinate: SIMD2<Float>
 
-    enum CodingKey: String {
-        case glyphIndex
-        case leftTexCoord
-        case rightTexCoord
-        case topTexCoord
-        case bottomTexCoord
-        case fontName
-        case fontSize
-        case spread
-        case textureData
-        case textureWidth
-        case textureHeight
-        case glyphDescriptors
+    public init(glyphIndex: UInt,
+                topLeftCoordinate: SIMD2<Float>,
+                bottomRightCoordinate: SIMD2<Float>) {
+        self.glyphIndex = .init(glyphIndex)
+        self.topLeftCoordinate = topLeftCoordinate
+        self.bottomRightCoordinate = bottomRightCoordinate
     }
-
-    // MARK: - Properties
-
-    var glyphIndex: CGGlyph!
-    var topLeftTexCoord: CGPoint!
-    var bottomRightTexCoord: CGPoint!
 
 }
 

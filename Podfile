@@ -6,8 +6,7 @@ use_frameworks!
 
 target 'TextRendering' do
   pod 'MetalView'
-  pod 'Alloy/Shaders'
+  pod 'Alloy/Shaders', :git => 'https://github.com/s1ddok/Alloy.git',
+                       :branch => 'text-rendering'
   pod 'SnapKit'
-  pod 'SwiftMath'
-  pod 'SettingsViewController', :git => 'https://github.com/eugenebokhan/SettingsViewController.git', :branch => 'master'
 end

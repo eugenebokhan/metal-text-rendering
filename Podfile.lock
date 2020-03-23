@@ -1,48 +1,42 @@
 PODS:
-  - Alloy (0.13.2):
-    - Alloy/Core (= 0.13.2)
-  - Alloy/Core (0.13.2)
-  - Alloy/Shaders (0.13.2):
+  - Alloy (0.13.3):
+    - Alloy/Core (= 0.13.3)
+  - Alloy/Core (0.13.3)
+  - Alloy/Shaders (0.13.3):
     - Alloy/Core
   - MetalView (1.0.0):
     - Alloy (~> 0.13.2)
     - SwiftMath (~> 3.2.1)
-  - SettingsViewController (0.1.0):
-    - SnapKit
   - SnapKit (5.0.1)
   - SwiftMath (3.2.1)
 
 DEPENDENCIES:
-  - Alloy/Shaders
+  - Alloy/Shaders (from `https://github.com/s1ddok/Alloy.git`, branch `text-rendering`)
   - MetalView
-  - SettingsViewController (from `https://github.com/eugenebokhan/SettingsViewController.git`, branch `master`)
   - SnapKit
-  - SwiftMath
 
 SPEC REPOS:
   trunk:
-    - Alloy
     - MetalView
     - SnapKit
     - SwiftMath
 
 EXTERNAL SOURCES:
-  SettingsViewController:
-    :branch: master
-    :git: https://github.com/eugenebokhan/SettingsViewController.git
+  Alloy:
+    :branch: text-rendering
+    :git: https://github.com/s1ddok/Alloy.git
 
 CHECKOUT OPTIONS:
-  SettingsViewController:
-    :commit: bca8586e08699bfd8ac16fbeda01d6afceb91533
-    :git: https://github.com/eugenebokhan/SettingsViewController.git
+  Alloy:
+    :commit: 372b8508215d56ad581b02c32c98f478d6cf4107
+    :git: https://github.com/s1ddok/Alloy.git
 
 SPEC CHECKSUMS:
-  Alloy: c6f0995da7dc73dca375e530c30b3a79a9228526
+  Alloy: c6428784056aa90e89b7ccddc5290ce8bcce914d
   MetalView: d330ef8e07364cdd726ac3fe43e2de2d7a89755a
-  SettingsViewController: 6dca874ca3785059d125c9a66bce48d27819d34c
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftMath: 5ae74160b077a63752d6cce4fbe85657dad6b534
 
-PODFILE CHECKSUM: 269d0d93e5444583b454a32d58f6523eeca24a5b
+PODFILE CHECKSUM: b2f249a4767be67b73302fea267399cb5c8d5ff6
 
 COCOAPODS: 1.9.1

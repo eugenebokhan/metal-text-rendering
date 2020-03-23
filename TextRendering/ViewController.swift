@@ -2,8 +2,6 @@ import UIKit
 import SnapKit
 import Alloy
 import MetalView
-import MetalPerformanceShaders
-import SettingsViewController
 
 class ViewController: UIViewController {
 
@@ -16,11 +14,6 @@ class ViewController: UIViewController {
     private var atlasProvider: MTLFontAtlasProvider!
     private var textRender: TextRender!
     private var destinationTexture: MTLTexture!
-    private let screenBounds = UIScreen.main.nativeBounds
-    private var destinationTextureSize: SIMD2<Int> {
-        .init(.init(self.screenBounds.width),
-              .init(self.screenBounds.height))
-    }
 
     // MARK: - Life Cycle
 
@@ -34,15 +27,7 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        let drawableSize = MTLSize(width: self.destinationTextureSize.x,
-                                   height: self.destinationTextureSize.y,
-                                   depth: 0)
-        self.textRender.renderTargetSize = drawableSize
-        self.textRender.textMeshDescriptor = .init(text: "Damn, I'm good Damn, I'm good Damn, I'm good Damn, I'm good Damn, I'm good Damn, I'm good Damn, I'm good Damn, I'm good Damn, I'm good Damn, I'm good Damn, I'm good ",
-                                                   rect: .init(origin: .init(x: 0.25, y: 0.25),
-                                                               size: .init(width: 0.5,
-                                                                           height: 0.5)),
-                                                   fontSize: 70)
+        self.setupTextRender()
         self.draw(texture: self.destinationTexture)
     }
 
@@ -53,27 +38,17 @@ class ViewController: UIViewController {
         self.metalView = try .init(context: self.context)
         self.metalView.contentScaleFactor = UIScreen.main.scale
 
+        let screenBounds = UIScreen.main.nativeBounds
         self.destinationTexture = try self.context
-                                          .texture(width: self.destinationTextureSize.x,
-                                                   height: self.destinationTextureSize.y,
+                                          .texture(width: .init(screenBounds.width),
+                                                   height: .init(screenBounds.height),
                                                    pixelFormat: .bgra8Unorm)
 
         self.atlasProvider = try MTLFontAtlasProvider(context: self.context)
         let fontAtlas = try self.atlasProvider
-                                .fontAtlas(descriptor: .init(fontName: "HelveticaNeue",
-                                                             textureSize: 2048))
+                                .fontAtlas(descriptor: MTLFontAtlasProvider.defaultAtlasDescriptor)
         self.textRender = try .init(context: self.context,
                                     fontAtlas: fontAtlas)
-
-        let fontAtlasCodable = try fontAtlas.codable()
-        let jsonEncoder = JSONEncoder()
-        let fontAtlasData = try jsonEncoder.encode(fontAtlasCodable)
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let documentsDirectory = paths[0]
-
-        let fileURL = documentsDirectory.appendingPathComponent("HelveticaNeue.mtlfontatlas")
-        try fontAtlasData.write(to: fileURL)
-
         self.setupUI()
     }
 
@@ -88,6 +63,17 @@ class ViewController: UIViewController {
             constraintMaker.bottom.equalToSuperview().inset(40)
             constraintMaker.trailing.leading.equalToSuperview()
         }
+    }
+
+    private func setupTextRender() {
+        self.textRender.renderTargetSize = self.destinationTexture.size
+        self.textRender.geometryDescriptors = [
+            .init(text: "It’s time to kick ass and chew bubble gum...and I’m all outta gum.",
+                  normalizedRect: .init(origin: .init(x: 0.25, y: 0.25),
+                                        size: .init(width: 0.5,
+                                                    height: 0.5)),
+                  color: UIColor.red.cgColor)
+        ]
     }
 
     // MARK: - Draw

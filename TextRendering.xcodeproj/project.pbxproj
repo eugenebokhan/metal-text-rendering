@@ -3,22 +3,23 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0098AC7963D9649A470E0FE1 /* Pods_TextRendering.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE4910DF5AE5A89DC3A2F250 /* Pods_TextRendering.framework */; };
+		1861E8D92701DA8B00A36722 /* TextureView in Frameworks */ = {isa = PBXBuildFile; productRef = 1861E8D82701DA8B00A36722 /* TextureView */; };
+		18A3C1A52702174200EBA46E /* MetalRenderingTools in Frameworks */ = {isa = PBXBuildFile; productRef = 18A3C1A42702174200EBA46E /* MetalRenderingTools */; };
+		18D1305F2702035200289A06 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 18D1305E2702035200289A06 /* SnapKit */; };
+		18D130622702037400289A06 /* MetalRenderingTools in Frameworks */ = {isa = PBXBuildFile; productRef = 18D130612702037400289A06 /* MetalRenderingTools */; };
 		18F703C4241CC94200062259 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F703C3241CC94200062259 /* AppDelegate.swift */; };
 		18F703C6241CC94200062259 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F703C5241CC94200062259 /* SceneDelegate.swift */; };
 		18F703C8241CC94200062259 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F703C7241CC94200062259 /* ViewController.swift */; };
 		18F703CB241CC94200062259 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18F703C9241CC94200062259 /* Main.storyboard */; };
 		18F703CD241CC94300062259 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18F703CC241CC94300062259 /* Assets.xcassets */; };
 		18F703D0241CC94300062259 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18F703CE241CC94300062259 /* LaunchScreen.storyboard */; };
-		18F703D8241CC9B200062259 /* MetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F703D7241CC9B200062259 /* MetalView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		184D7A8A241D4F77006DCC93 /* TextRendering-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TextRendering-Bridging-Header.h"; sourceTree = "<group>"; };
 		18D854ED2420D0FF002CC5DB /* TextRendering.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TextRendering.entitlements; sourceTree = "<group>"; };
 		18F703C0241CC94200062259 /* TextRendering.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextRendering.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18F703C3241CC94200062259 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -28,10 +29,6 @@
 		18F703CC241CC94300062259 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18F703CF241CC94300062259 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18F703D1241CC94300062259 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		18F703D7241CC9B200062259 /* MetalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalView.swift; sourceTree = "<group>"; };
-		4F7A490D872C640E7F586548 /* Pods-TextRendering.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextRendering.release.xcconfig"; path = "Target Support Files/Pods-TextRendering/Pods-TextRendering.release.xcconfig"; sourceTree = "<group>"; };
-		618E380E195F04399C6C6805 /* Pods-TextRendering.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextRendering.debug.xcconfig"; path = "Target Support Files/Pods-TextRendering/Pods-TextRendering.debug.xcconfig"; sourceTree = "<group>"; };
-		FE4910DF5AE5A89DC3A2F250 /* Pods_TextRendering.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TextRendering.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,26 +36,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0098AC7963D9649A470E0FE1 /* Pods_TextRendering.framework in Frameworks */,
+				1861E8D92701DA8B00A36722 /* TextureView in Frameworks */,
+				18A3C1A52702174200EBA46E /* MetalRenderingTools in Frameworks */,
+				18D130622702037400289A06 /* MetalRenderingTools in Frameworks */,
+				18D1305F2702035200289A06 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0317492BF4ED9A5EA426492B /* Pods */ = {
+		18D130602702037400289A06 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				618E380E195F04399C6C6805 /* Pods-TextRendering.debug.xcconfig */,
-				4F7A490D872C640E7F586548 /* Pods-TextRendering.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		0898DDEB296183E45E5457CC /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				FE4910DF5AE5A89DC3A2F250 /* Pods_TextRendering.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -68,8 +58,7 @@
 			children = (
 				18F703C2241CC94200062259 /* TextRendering */,
 				18F703C1241CC94200062259 /* Products */,
-				0317492BF4ED9A5EA426492B /* Pods */,
-				0898DDEB296183E45E5457CC /* Frameworks */,
+				18D130602702037400289A06 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -88,12 +77,10 @@
 				18F703C3241CC94200062259 /* AppDelegate.swift */,
 				18F703C5241CC94200062259 /* SceneDelegate.swift */,
 				18F703C7241CC94200062259 /* ViewController.swift */,
-				18F703D7241CC9B200062259 /* MetalView.swift */,
 				18F703C9241CC94200062259 /* Main.storyboard */,
 				18F703CC241CC94300062259 /* Assets.xcassets */,
 				18F703CE241CC94300062259 /* LaunchScreen.storyboard */,
 				18F703D1241CC94300062259 /* Info.plist */,
-				184D7A8A241D4F77006DCC93 /* TextRendering-Bridging-Header.h */,
 			);
 			path = TextRendering;
 			sourceTree = "<group>";
@@ -105,17 +92,21 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18F703D4241CC94300062259 /* Build configuration list for PBXNativeTarget "TextRendering" */;
 			buildPhases = (
-				0D8080925284E86DA7EA4C24 /* [CP] Check Pods Manifest.lock */,
 				18F703BC241CC94200062259 /* Sources */,
 				18F703BD241CC94200062259 /* Frameworks */,
 				18F703BE241CC94200062259 /* Resources */,
-				681A12A4443F8B64789C47B0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = TextRendering;
+			packageProductDependencies = (
+				1861E8D82701DA8B00A36722 /* TextureView */,
+				18D1305E2702035200289A06 /* SnapKit */,
+				18D130612702037400289A06 /* MetalRenderingTools */,
+				18A3C1A42702174200EBA46E /* MetalRenderingTools */,
+			);
 			productName = TextRendering;
 			productReference = 18F703C0241CC94200062259 /* TextRendering.app */;
 			productType = "com.apple.product-type.application";
@@ -127,7 +118,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1300;
 				ORGANIZATIONNAME = "Eugene Bokhan";
 				TargetAttributes = {
 					18F703BF241CC94200062259 = {
@@ -145,6 +136,11 @@
 				Base,
 			);
 			mainGroup = 18F703B7241CC94200062259;
+			packageReferences = (
+				1861E8D72701DA8B00A36722 /* XCRemoteSwiftPackageReference "texture-view" */,
+				18D1305D2702035200289A06 /* XCRemoteSwiftPackageReference "snapkit" */,
+				18A3C1A32702174200EBA46E /* XCRemoteSwiftPackageReference "metal-rendering-tools" */,
+			);
 			productRefGroup = 18F703C1241CC94200062259 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -167,52 +163,11 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		0D8080925284E86DA7EA4C24 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TextRendering-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		681A12A4443F8B64789C47B0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TextRendering/Pods-TextRendering-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		18F703BC241CC94200062259 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18F703D8241CC9B200062259 /* MetalView.swift in Sources */,
 				18F703C8241CC94200062259 /* ViewController.swift in Sources */,
 				18F703C4241CC94200062259 /* AppDelegate.swift in Sources */,
 				18F703C6241CC94200062259 /* SceneDelegate.swift in Sources */,
@@ -267,6 +222,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -327,6 +283,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -357,7 +314,6 @@
 		};
 		18F703D5241CC94300062259 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 618E380E195F04399C6C6805 /* Pods-TextRendering.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -374,7 +330,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.eugenebokhan.TextRendering;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "TextRendering/TextRendering-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -383,7 +339,6 @@
 		};
 		18F703D6241CC94300062259 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4F7A490D872C640E7F586548 /* Pods-TextRendering.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -400,7 +355,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.eugenebokhan.TextRendering;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "TextRendering/TextRendering-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -428,6 +383,55 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1861E8D72701DA8B00A36722 /* XCRemoteSwiftPackageReference "texture-view" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/eugenebokhan/texture-view.git";
+			requirement = {
+				kind = exactVersion;
+				version = 1.0.2;
+			};
+		};
+		18A3C1A32702174200EBA46E /* XCRemoteSwiftPackageReference "metal-rendering-tools" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/eugenebokhan/metal-rendering-tools.git";
+			requirement = {
+				kind = exactVersion;
+				version = 0.0.1;
+			};
+		};
+		18D1305D2702035200289A06 /* XCRemoteSwiftPackageReference "snapkit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/snapkit/snapkit.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1861E8D82701DA8B00A36722 /* TextureView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1861E8D72701DA8B00A36722 /* XCRemoteSwiftPackageReference "texture-view" */;
+			productName = TextureView;
+		};
+		18A3C1A42702174200EBA46E /* MetalRenderingTools */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18A3C1A32702174200EBA46E /* XCRemoteSwiftPackageReference "metal-rendering-tools" */;
+			productName = MetalRenderingTools;
+		};
+		18D1305E2702035200289A06 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18D1305D2702035200289A06 /* XCRemoteSwiftPackageReference "snapkit" */;
+			productName = SnapKit;
+		};
+		18D130612702037400289A06 /* MetalRenderingTools */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MetalRenderingTools;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 18F703B8241CC94200062259 /* Project object */;
 }
